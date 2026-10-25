@@ -1,6 +1,7 @@
 package com.eazybytes.openai.controller;
 
 
+import com.eazybytes.openai.advisors.TokenUsageAuditAdvisor;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ public class ChatController {
     public String chat(@RequestParam("message") String message) {
         return chatClient
                 .prompt()
+                //.advisors(new TokenUsageAuditAdvisor())
                 .system("""
                         Act as an  IT service desk Employee and only asnwer to the IT related Queries.
                         """)
